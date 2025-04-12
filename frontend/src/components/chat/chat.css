@@ -1,0 +1,91 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  .chat-title {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+  }
+  
+  .chat-box {
+    flex-grow: 1; /* Allow chat box to take available space */
+    overflow-y: auto; /* Allow scrolling of messages */
+    padding: 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .message {
+    max-width: 70%;
+    padding: 8px 15px;
+    border-radius: 15px;
+    margin: 5px 0;
+    display: inline-block;
+    word-wrap: break-word;
+  }
+  
+  .user-message {
+    background-color: #e1f5fe;
+    align-self: flex-end;
+  }
+  
+  .ai-message {
+    background-color: #f1f1f1;
+    align-self: flex-start;
+  }
+  
+  .chat-form {
+    display: flex;
+    padding: 10px;
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+  }
+  
+  .chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 1rem;
+  }
+  
+  .chat-submit-btn {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .chat-submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .speech-to-text {
+    margin-right: 10px; /* Space between Speech-to-Text and Send button */
+    display: flex;
+    align-items: center; /* Aligns the button in the center */
+  }
+  
+  .speech-to-text button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #007BFF;
+  }
+  
+  .speech-to-text button:hover {
+    color: #0056b3;
+  }
+  

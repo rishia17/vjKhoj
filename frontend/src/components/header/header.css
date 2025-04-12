@@ -1,0 +1,55 @@
+/* Ensure header stays on top */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 999;
+}
+
+/* Header background */
+.header {
+  background-color: #0a0118; /* Updated to deep violet */
+  color: #ffffff; /* White text */
+}
+
+/* Brand text */
+.brand-text {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #ffffff !important; /* White text */
+}
+
+/* Link base style */
+/* Base link style */
+.nav-link {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+/* Hover effect */
+.nav-link:hover {
+  color: #FF7FC2;
+}
+
+/* Prevent link from turning black on click */
+.nav-link:focus,
+.nav-link:active {
+  color: #FF7FC2;
+  outline: none;
+  text-decoration: none;
+}
+
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(230, 230, 230); /* Light background */
+}

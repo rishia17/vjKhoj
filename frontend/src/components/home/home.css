@@ -1,0 +1,33 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ⛔ no scroll */
+  height: 100%;
+}
+
+.home-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  top: 40%;
+}

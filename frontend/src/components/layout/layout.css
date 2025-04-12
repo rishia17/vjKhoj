@@ -1,0 +1,15 @@
+/* Ensure body and html take up full height and width and prevent scrolling */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Disable scrolling */
+  }
+  
+  /* Ensure the root element stretches across the entire viewport */
+  #root {
+    width: 100%;
+    height: 100%;
+  }
+  
