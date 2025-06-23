@@ -18,7 +18,7 @@ function Header() {
   };
 
   return (
-    <Navbar className="header" expand="lg">
+    <Navbar className="header bg-dark" expand="lg">
       <Container fluid>
         <Navbar.Brand as={Link} to="/" className="nav-link brand-text">
           VJKHOJ

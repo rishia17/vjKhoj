@@ -47,7 +47,7 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    <div className={`chat-container ${theme} pt-2 rounded`}>
+    <div className={`chat-container ${theme} pt-2 rounded width: 100% , height: 100%`}>
   {/* Header */}
   <div className="chat-header">
     <h2 className="chat-title">Chat with AI</h2>

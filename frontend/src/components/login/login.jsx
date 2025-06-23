@@ -29,7 +29,7 @@ function Login() {
   }
 
   return (
-    <Container className="login-container">
+    <Container className="login-container ">
       <h2 className="login-title">Login</h2>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3">

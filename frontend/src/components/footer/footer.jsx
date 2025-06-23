@@ -5,7 +5,7 @@ function Foot() {
     <footer
       className="text-white d-flex align-items-center justify-content-center"
       style={{
-        backgroundColor: "#0a0118",
+        backgroundColor: "green",
         height: "120px",         // Make the footer big
         fontSize: "2rem",        // Big text
         textAlign: "center",
