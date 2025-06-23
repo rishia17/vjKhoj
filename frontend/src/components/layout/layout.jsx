@@ -1,32 +1,23 @@
 import React from "react";
 import Header from "../header/header";
 import { Outlet } from "react-router-dom";
-import Footer from "../footer/footer";
 
 function Layout() {
   return (
-    <div
-      style={{
+    <div style={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
-      }}
-    >
-      {/* Fixed Header */}
-      <div style={{ height: "75px", flexShrink: 0 }}>
-        <Header />
+        minHeight: "100vh"
+      }}>
+        <div style={{ minHeight: "75px", flexShrink: 0 }}>
+          <Header />
+        </div>
+      
+        <div style={{ flex: 1, backgroundColor: "#0a0118" }}>
+          <Outlet />
+        </div>
       </div>
 
-      {/* Scrollable content */}
-      <div style={{ minHeight: "calc(100vh - 75px)", flex: 1 }}>
-        <Outlet />
-      </div>
-
-      {/* Optional Footer */}
-      {/* <div style={{ height: "60px", flexShrink: 0 }}>
-        <Footer />
-      </div> */}
-    </div>
   );
 }
 
