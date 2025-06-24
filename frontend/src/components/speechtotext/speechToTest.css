@@ -1,33 +1,21 @@
-.speech-to-text {
-    text-align: center;
-    margin-top: 20px;
+ .speech-to-text {
+  padding: 8px 16px;
+  background: #e0e0e0;
+  color: #333;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  margin: 5px
   }
-  
+
   .record-button {
-    background-color: #007bff; /* Initial background color */
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 20px;
-    font-size: 24px;
-    cursor: pointer;
+    background-color: #e0e0e0; /* Initial background color */
+    color: #333;
+     border: none;
     outline: none;
+    font-size: 20px;
     transition: background-color 0.3s, transform 0.2s;
   }
   
-  .record-button.recording {
-    background-color: #dc3545; /* Change color when recording */
-  }
+
   
-  .record-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.1); /* Slightly enlarge on hover */
-  }
-  
-  .record-button i {
-    font-size: 36px; /* Icon size */
-  }
-  
-  .material-icons {
-    font-size: 36px; /* Adjust icon size */
-  }

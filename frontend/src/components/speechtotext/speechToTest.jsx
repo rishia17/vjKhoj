@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
-
+import { FaMicrophone } from "react-icons/fa"
+import { FaStopCircle } from "react-icons/fa";
+import "./speechToTest.css";
 const SpeechToText = ({ setQuery }) => {
   const [isRecording, setIsRecording] = useState(false);
   const recognitionRef = useRef(null); // Store the recognition instance
@@ -60,7 +62,7 @@ const SpeechToText = ({ setQuery }) => {
         type="button"
         onClick={handleToggleRecording}
       >
-        <i className={`fa ${isRecording ? 'fa-stop' : 'fa-microphone'}`}></i>
+         {isRecording ? <FaStopCircle /> : <FaMicrophone />}
       </button>
     </div>
   );
