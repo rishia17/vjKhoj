@@ -1,4 +1,5 @@
 /* === RESET === */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -41,15 +42,20 @@ html, body, #root {
 .chat-title {
   flex: 1;
   text-align: center;
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: 3px;
   color: var(--title-color);
 }
 
 .theme-toggle {
   background: none;
   border: none;
-  font-size: 1.3rem;
+  font-size: 2rem;
   color: inherit;
   cursor: pointer;
   margin-left: auto;
@@ -169,17 +175,17 @@ html, body, #root {
 
 /* === THEME VARIABLES === */
 .chat-wrapper.dark {
-  --bg-color: #0e1117;
+  --bg-color: #004bec;
   --text-color: #c9d1d9;
   --input-bar: #161b22;
-  --title-color: #3ea6ff;
+  --title-color: #a09d9d;
 }
 
 .chat-wrapper.light {
   --bg-color: #f5f5f5;
   --text-color: #111;
-  --input-bar: #eaeaea;
-  --title-color: #000000;
+  --input-bar: #dcdada;
+  --title-color: #a09d9d;
 }
 
 /* === ANIMATIONS === */
