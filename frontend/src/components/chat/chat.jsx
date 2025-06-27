@@ -151,6 +151,7 @@ const Chat = () => {
                 <div className="message-avatar">
                   <div className="ai-avatar">
                     <HiSparkles />
+                    {/* <h6 className="text-semibold">Bot</h6> */}
                   </div>
                 </div>
               </div>

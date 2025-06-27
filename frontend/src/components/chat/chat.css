@@ -63,7 +63,7 @@ body,
   background: var(--header-bg);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
-  padding: 16px 24px;
+  padding: 8px;
 }
 
 .header-content {
@@ -114,14 +114,14 @@ body,
 }
 
 .chat-title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.2;
 }
 
 .chat-subtitle {
-  font-size: 12px;
+  font-size: 10px;
   color: var(--text-secondary);
   font-weight: 400;
 }
@@ -168,7 +168,7 @@ body,
   margin: 0 auto;
   width: 100%;
   scroll-behavior: smooth;
-  padding-bottom: 180px;
+  padding-bottom: 240px;
 }
 
 .chat-body::-webkit-scrollbar {
@@ -189,8 +189,8 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
-  padding: 40px 20px;
+  /* min-height: 60vh; */
+  padding: 15px;
 }
 
 .welcome-card {
@@ -198,7 +198,7 @@ body,
   max-width: 600px;
   background: var(--surface-primary);
   border-radius: 24px;
-  padding: 48px 32px;
+  padding: 36px 32px;
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-card);
 }
