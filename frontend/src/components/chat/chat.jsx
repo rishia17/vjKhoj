@@ -31,30 +31,61 @@ const Chat = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"))
   }
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   if (!query.trim()) return
+
+  //   setMessages([...messages, { text: query, sender: "user" }])
+  //   setQuery("")
+  //   setLoading(true)
+  //   setTypingText(null)
+  //   setTimeout(() => autoResize(), 0)
+
+  //   try {
+  //     const genAI = new GoogleGenerativeAI(API_KEY)
+  //     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
+  //     const result = await model.generateContent(query)
+  //     const aiResponse = result.response.text()
+
+  //     setTypingText(aiResponse)
+  //   } catch (error) {
+  //     console.error("Error:", error)
+  //     setTypingText("An error occurred.")
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (!query.trim()) return
+  e.preventDefault()
+  if (!query.trim()) return
 
-    setMessages([...messages, { text: query, sender: "user" }])
-    setQuery("")
-    setLoading(true)
-    setTypingText(null)
-    setTimeout(() => autoResize(), 0)
+  setMessages([...messages, { text: query, sender: "user" }])
+  setQuery("")
+  setLoading(true)
+  setTypingText(null)
+  setTimeout(() => autoResize(), 0)
 
-    try {
-      const genAI = new GoogleGenerativeAI(API_KEY)
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
-      const result = await model.generateContent(query)
-      const aiResponse = result.response.text()
+  try {
+    // Call your FastAPI backend instead of Gemini
+    const response = await fetch("http://localhost:8000/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: query }),
+    })
+    const data = await response.json()
+    const aiResponse = data.response || "No response from RAG model."
 
-      setTypingText(aiResponse)
-    } catch (error) {
-      console.error("Error:", error)
-      setTypingText("An error occurred.")
-    } finally {
-      setLoading(false)
-    }
+    setTypingText(aiResponse)
+  } catch (error) {
+    console.error("Error:", error)
+    setTypingText("An error occurred.")
+  } finally {
+    setLoading(false)
   }
+}
+
 
   useEffect(() => {
     if (typingText !== null) {
