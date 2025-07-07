@@ -6,7 +6,7 @@
   width: 100vw;
   height: 75px; /* Set fixed height */
   z-index: 999;
-  background-color: #0a0118; /* Deep violet */
+  background-color: #3C3D37; /* Deep violet */
   color: white;
   display: flex;
   align-items: center; /* Vertically center content */
@@ -24,7 +24,7 @@
 .nav-link {
   color: white;
   font-weight: 500;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
   transition: color 0.3s ease;
 }
 
@@ -33,6 +33,11 @@
 .nav-link:active {
   color: #FF7FC2;
   text-decoration: none;
+}
+
+/* Mobile view: Set background color for dropdown links */
+.navbar-collapse {
+  background-color: #3C3D37; /* Same as header background */
 }
 
 /* Body adjustments */
