@@ -12,8 +12,8 @@ const Home = () => {
   return (
     <div className="main-container">
       <div className="left-container">
-        <h1 className="animated-text">Welcome to the ChatBot</h1>
-        <p className="description">This is a 3D model view of a chatbot robot. Explore the features and interact with the chatbot.</p>
+        <h1 className="animated-text">Welcome to the <span className='text-warning '> VJ KHOJ</span></h1>
+        <p className="description"> What's your project idea? Share it with me, and I'll help you refine it, suggest suitable tech stacks, datasets, and APIs to get you started.</p>
       </div>
       <div className="right-container">
         <model-viewer

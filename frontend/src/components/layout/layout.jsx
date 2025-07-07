@@ -19,7 +19,7 @@ function Layout() {
           </div>
         }
       
-        <div style={{ flex: 1, backgroundColor: "#0a0118" }}>
+        <div style={{ flex: 1, backgroundColor: "black" }}>
           <Outlet />
         </div>
       </div>
