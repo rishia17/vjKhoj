@@ -1,13 +1,13 @@
+"use client"
 
 import { useState, useEffect, useRef } from "react"
 import "./Chat.css"
-import { GoogleGenerativeAI } from "@google/generative-ai"
 import SpeechToText from "../speechtotext/speechToTest"
 import TypewriterText from "../TypewriterText"
 import { IoSendSharp } from "react-icons/io5"
 import { HiSparkles } from "react-icons/hi2"
 import { BsChatDots } from "react-icons/bs"
-import { FiPaperclip } from "react-icons/fi"
+import { Link } from "react-router-dom"
 
 const Chat = () => {
   const API_KEY = "AIzaSyDIk40zZQB5XzuNGm8eVSU7vI3s3A2e5x8"
@@ -31,61 +31,34 @@ const Chat = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"))
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   if (!query.trim()) return
-
-  //   setMessages([...messages, { text: query, sender: "user" }])
-  //   setQuery("")
-  //   setLoading(true)
-  //   setTypingText(null)
-  //   setTimeout(() => autoResize(), 0)
-
-  //   try {
-  //     const genAI = new GoogleGenerativeAI(API_KEY)
-  //     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
-  //     const result = await model.generateContent(query)
-  //     const aiResponse = result.response.text()
-
-  //     setTypingText(aiResponse)
-  //   } catch (error) {
-  //     console.error("Error:", error)
-  //     setTypingText("An error occurred.")
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
   const handleSubmit = async (e) => {
-  e.preventDefault()
-  if (!query.trim()) return
+    e.preventDefault()
+    if (!query.trim()) return
+    setMessages([...messages, { text: query, sender: "user" }])
+    setQuery("")
+    setLoading(true)
+    setTypingText(null)
+    setTimeout(() => autoResize(), 0)
 
-  setMessages([...messages, { text: query, sender: "user" }])
-  setQuery("")
-  setLoading(true)
-  setTypingText(null)
-  setTimeout(() => autoResize(), 0)
-
-  try {
-    // Call your FastAPI backend instead of Gemini
-    const response = await fetch("http://localhost:8000/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message: query }),
-    })
-    const data = await response.json()
-    const aiResponse = data.response || "No response from RAG model."
-
-    setTypingText(aiResponse)
-  } catch (error) {
-    console.error("Error:", error)
-    setTypingText("An error occurred.")
-  } finally {
-    setLoading(false)
+    try {
+      // Call your FastAPI backend instead of Gemini
+      const response = await fetch("http://localhost:8000/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: query }),
+      })
+      const data = await response.json()
+      const aiResponse = data.response || "No response from RAG model."
+      setTypingText(aiResponse)
+    } catch (error) {
+      console.error("Error:", error)
+      setTypingText("An error occurred.")
+    } finally {
+      setLoading(false)
+    }
   }
-}
-
 
   useEffect(() => {
     if (typingText !== null) {
@@ -115,17 +88,19 @@ const Chat = () => {
       </div>
 
       {/* Header */}
-      <div className="chat-header">
+      <div className="chat-header p-1">
         <div className="header-content">
-          <div className="logo-section">
-            <div className="logo-container">
-              <HiSparkles className="logo-icon" />
+          <Link to="/" className="logo-link">
+            <div className="logo-section">
+              <div className="logo-container">
+                <HiSparkles className="logo-icon" />
+              </div>
+              <div className="title-section">
+                <h2 className="chat-title">VJ KHOJ</h2>
+                <span className="chat-subtitle">VNR VJIET</span>
+              </div>
             </div>
-            <div className="title-section">
-              <h2 className="chat-title">AI Assistant</h2>
-              <span className="chat-subtitle">VNR VJIET</span>
-            </div>
-          </div>
+          </Link>
           <button className="theme-toggle" onClick={toggleTheme}>
             <div className="toggle-track">
               <div className="toggle-thumb"></div>
@@ -155,19 +130,18 @@ const Chat = () => {
         )}
 
         {messages.map((msg, index) => (
-          <div key={index} className={`message-container ${msg.sender === "user" ? "user-container" : "ai-container"}`}>
-            <div className="message-bubble">
-              <div className="message-header">
-                <div className="message-avatar">
-                  {msg.sender === "user" ? (
-                    <div className="user-avatar">You</div>
-                  ) : (
-                    <div className="ai-avatar">
-                      <HiSparkles />
-                    </div>
-                  )}
+          <div key={index} className={`message-container ${msg.sender}`}>
+            <div className="message-avatar">
+              {msg.sender === "user" ? (
+                <div className="user-avatar">You</div>
+              ) : (
+                <div className="ai-avatar">
+                  <HiSparkles />
                 </div>
-              </div>
+              )}
+            </div>
+            <div className="message-bubble">
+              {/* <div className="message-header">{msg.sender === "user" ? "You" : "VJ KHOJ"}</div> */}
               <div className="message-content">
                 <div className="message-text">{msg.text}</div>
               </div>
@@ -176,16 +150,14 @@ const Chat = () => {
         ))}
 
         {typingText && (
-          <div className="message-container ai-container">
-            <div className="message-bubble typing-bubble">
-              <div className="message-header">
-                <div className="message-avatar">
-                  <div className="ai-avatar">
-                    <HiSparkles />
-                    {/* <h6 className="text-semibold">Bot</h6> */}
-                  </div>
-                </div>
+          <div className="message-container ai">
+            <div className="message-avatar">
+              <div className="ai-avatar">
+                <HiSparkles />
               </div>
+            </div>
+            <div className="message-bubble typing-bubble">
+              <div className="message-header">VJ KHOJ</div>
               <div className="message-content">
                 <div className="message-text">
                   <TypewriterText text={typingText} />
@@ -196,15 +168,14 @@ const Chat = () => {
         )}
 
         {loading && !typingText && (
-          <div className="message-container ai-container">
-            <div className="message-bubble">
-              <div className="message-header">
-                <div className="message-avatar">
-                  <div className="ai-avatar">
-                    <HiSparkles />
-                  </div>
-                </div>
+          <div className="message-container ai">
+            <div className="message-avatar">
+              <div className="ai-avatar">
+                <HiSparkles />
               </div>
+            </div>
+            <div className="message-bubble">
+              <div className="message-header">VJ KHOJ</div>
               <div className="message-content">
                 <div className="typing-indicator">
                   <div className="typing-dots">
@@ -242,9 +213,6 @@ const Chat = () => {
                 }}
               />
               <div className="input-actions">
-                {/* <button type="button" className="attachment-btn">
-                  <FiPaperclip />
-                </button> */}
                 <SpeechToText setQuery={setQuery} />
                 <button type="submit" className={`send-btn ${query.trim() ? "active" : ""}`} disabled={!query.trim()}>
                   <IoSendSharp />
