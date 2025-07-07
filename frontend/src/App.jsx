@@ -5,7 +5,7 @@ import Home from './components/home/home'
 import Register from './components/register/register'
 import Login from './components/login/login'
 import Chat from './components/chat/chat'
-
+import PrivateRoute from './components/PrivateRoute';
 function App() {
   const router = createBrowserRouter([
     {
@@ -26,7 +26,11 @@ function App() {
         },
         {
           path: 'chat',
-          element: <Chat />
+          element:  (
+            <PrivateRoute>
+              <Chat />
+            </PrivateRoute>
+          ) 
         }
       ]
     }
