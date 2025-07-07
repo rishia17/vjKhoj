@@ -20,40 +20,79 @@ Avoid chit-chat. Stay strictly academic and project-focused. No hallucinations.
 ]
 
 def generate_chat_response(query: str):
-    # 1. Use separate short intent classifier prompt
+    # 1. Classify intent
     intent_check_history = [
-        {
-            "role": "system",
-            "content": """
-You are an intent classifier.
+    {
+        "role": "system",
+        "content": """
+You are an intent classifier for a student assistant.
 
-If the question is about identifying a guide, faculty, professor, mentor, or details like email/location of faculty, respond ONLY with: FACULTY_INTENT
+Your task is to classify the user's **current query** using the **entire conversation history for context**.
 
-If it's general (e.g., tech stack, refining ideas, datasets), respond ONLY with: GENERAL_INTENT
+Classify the intent as one of the following:
+- FACULTY_INTENT → if the user is asking about guides, professors, mentors, or faculty-related details (email, location, who can guide, etc.)
+- GENERAL_INTENT → if the user is asking about project ideas, tech stack, datasets, APIs, or implementation-related queries
+
+Always use the conversation history to resolve references like "this", "that", or "our project". Do NOT guess.
+
+Respond with ONLY one of these two labels: FACULTY_INTENT or GENERAL_INTENT.
 """
-        },
-        {"role": "user", "content": query}
-    ]
+    },
+    {
+        "role": "user",
+        "content": f"""
+QUERY:
+{query}
+
+CONVERSATION_HISTORY:
+{str(conversation_history)}
+"""
+    }
+]
 
     intent_response = groq_client.chat.completions.create(
         model="llama3-70b-8192",
         messages=intent_check_history
     )
-
     intent = intent_response.choices[0].message.content.strip()
 
-    # 2. Delegate based on intent
+    # 2. Extract last project title
+    title_extraction_prompt = [
+        {
+            "role": "system",
+            "content": """
+You are a project title extractor.
+
+From the current user query and the conversation history, extract the most relevant project title.
+Prefer any clearly mentioned project or topic in the CURRENT query itself.
+If no project is found, return "NONE".
+Respond ONLY with the project title.
+"""
+        },
+        {
+            "role": "user", 
+            "content": f"QUERY: {query}\n\nHISTORY: {str(conversation_history)}"
+        }
+    ]
+
+    title_response = groq_client.chat.completions.create(
+        model="llama3-70b-8192",
+        messages=title_extraction_prompt
+    )
+    last_project_title = title_response.choices[0].message.content.strip()
+
+    # 3. Add query after extraction to avoid context leak
+    conversation_history.append({"role": "user", "content": query})
+
+    # 4. Intent-based handling
     if intent == "FACULTY_INTENT":
         try:
-            faculty_response = generate_response(query, conversation_history)
-            conversation_history.append({"role": "user", "content": query})
+            faculty_response = generate_response(query, conversation_history, last_project_title)
             conversation_history.append({"role": "assistant", "content": faculty_response})
             return faculty_response
         except Exception as e:
             return f"Exception during faculty match: {str(e)}"
-
     else:  # GENERAL_INTENT
-        conversation_history.append({"role": "user", "content": query})
         general_response = groq_client.chat.completions.create(
             model="llama3-70b-8192",
             messages=conversation_history

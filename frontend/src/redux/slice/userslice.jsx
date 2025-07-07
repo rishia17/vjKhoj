@@ -1,20 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// Get user from localStorage (if exists)
+const userFromStorage = JSON.parse(localStorage.getItem("user"));
+
 export const userLoginThunk = createAsyncThunk(
   'userLogin',
   async (userCredObj, thunkApi) => {
     try {
-      let res;
-      res = await axios.post('http://localhost:8000/user-api/login', userCredObj);
+      const res = await axios.post('http://localhost:8000/user-api/login', userCredObj);
       
       if (res.data.message === 'Login successful') {
-        console.log('lesss goo')
+        console.log('lesss goo');
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem('user', JSON.stringify(res.data.user));
         return res.data;
       } else {
-        console.log(res.data.message);
         return thunkApi.rejectWithValue(res.data.message);
       }
     } catch (err) {
@@ -27,8 +28,8 @@ export const userSlice = createSlice({
   name: 'user-login',
   initialState: {
     isPending: false,
-    loginUserStatus: false,
-    currentUser: {},
+    loginUserStatus: !!userFromStorage, // true if user exists in localStorage
+    currentUser: userFromStorage || {},
     errorOccurred: false,
     errMsg: ''
   },
@@ -39,6 +40,8 @@ export const userSlice = createSlice({
       state.currentUser = {};
       state.errorOccurred = false;
       state.errMsg = '';
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
     }
   },
   extraReducers: (builder) => {

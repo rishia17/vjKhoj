@@ -6,14 +6,8 @@ from services.pinecone_service import search_similar_vectors
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 
-def extract_last_project_query(history: list[str]) -> str:
-    for message in reversed(history):
-        if message["role"] == "user" and not any(k in message["content"].lower() for k in ["faculty", "mentor", "guide", "email", "cabin", "professor"]):
-            return message["content"]
-    return ""
-
-def generate_response(query: str, conversation_history: list):
-    project_context = extract_last_project_query(conversation_history)
+def generate_response(query: str, conversation_history: list, last_project_title:str):
+    project_context = last_project_title
     reconstructed_query = f"{project_context}. {query}" if project_context else query
 
     vector = get_query_vector(reconstructed_query)
@@ -45,7 +39,7 @@ Based on the student's query and the most relevant faculty metadata, do ONE of t
 - If they asked for *name*, *designation*, or general guidance, give a brief full response (name, dept, location, email). Also include their relevant research work and papers.
 
 Never return multiple faculty. Only give the top relevant one.
-Keep the response minimal and direct. No hallucinations.
+Keep the response minimal and direct. No hallucinations. If no matching faculty are found reply with - Apologies, but we couldn’t find sufficient data about any faculty associated with the project you mentioned.
         """
     }
 
