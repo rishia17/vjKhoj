@@ -6,7 +6,7 @@ export const userLoginThunk = createAsyncThunk(
   async (userCredObj, thunkApi) => {
     try {
       let res;
-      res = await axios.post('http://localhost:5000/user-api/login', userCredObj);
+      res = await axios.post('http://localhost:8000/user-api/login', userCredObj);
       
       if (res.data.message === 'Login successful') {
         console.log('lesss goo')

@@ -123,7 +123,7 @@ const Chat = () => {
             </div>
             <div className="title-section">
               <h2 className="chat-title">AI Assistant</h2>
-              <span className="chat-subtitle">Powered by Gemini</span>
+              <span className="chat-subtitle">VNR VJIET</span>
             </div>
           </div>
           <button className="theme-toggle" onClick={toggleTheme}>
@@ -145,9 +145,9 @@ const Chat = () => {
               <h3 className="welcome-title">How can I help you today?</h3>
               <p className="welcome-subtitle">Ask me anything - I'm here to assist with your questions and tasks</p>
               <div className="suggestion-chips">
-                <button className="suggestion-chip">✨ Creative writing</button>
+                <button className="suggestion-chip">✨ Lab Assistance</button>
                 <button className="suggestion-chip">🔍 Research help</button>
-                <button className="suggestion-chip">💡 Problem solving</button>
+                <button className="suggestion-chip">💡 Faculty Assistance</button>
                 <button className="suggestion-chip">📚 Learning support</button>
               </div>
             </div>
@@ -242,9 +242,9 @@ const Chat = () => {
                 }}
               />
               <div className="input-actions">
-                <button type="button" className="attachment-btn">
+                {/* <button type="button" className="attachment-btn">
                   <FiPaperclip />
-                </button>
+                </button> */}
                 <SpeechToText setQuery={setQuery} />
                 <button type="submit" className={`send-btn ${query.trim() ? "active" : ""}`} disabled={!query.trim()}>
                   <IoSendSharp />

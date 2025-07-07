@@ -12,7 +12,7 @@ function Register() {
 
   async function registerUser(user) {
     try {
-      const res = await axios.post('http://localhost:5000/user-api/user', user);
+      const res = await axios.post('http://localhost:8000/user-api/user', user);
       if (res.data.message === 'User created') {
         navigate('/login');
       } else {
