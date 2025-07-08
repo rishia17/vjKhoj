@@ -6,7 +6,7 @@
   width: 100vw;
   height: 75px; /* Set fixed height */
   z-index: 999;
-  background-color: #2e3029; /* Deep violet */
+  background-color: #393E46;  /* #2e3029;*/ /* Deep violet */
   color: white;
   display: flex;
   align-items: center; /* Vertically center content */
@@ -16,8 +16,8 @@
 /* Brand text */
 .brand-text {
   font-weight: bold;
-  font-size: 1.4rem;
-  color: #ffffff !important;
+  font-size: 1.6rem;
+  color: gold !important;
 }
 
 /* Nav links styling */
@@ -37,7 +37,7 @@
 
 /* Mobile view: Set background color for dropdown links */
 .navbar-collapse {
-  background-color: #2e3029;/* Same as header background */
+  background-color:#393E46;/* Same as header background */
 }
 
 /* Body adjustments */
