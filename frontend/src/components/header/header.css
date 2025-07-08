@@ -16,8 +16,8 @@
 /* Brand text */
 .brand-text {
   font-weight: bold;
-  font-size: 1.6rem;
-  color: gold !important;
+  font-size: 2.3rem;
+  color: rgb(13, 202, 240)!important;
 }
 
 /* Nav links styling */
@@ -46,4 +46,14 @@ html, body {
   padding: 0;
   height: 100%;
   background-color: rgb(230, 230, 230);
+}
+
+
+@media (max-width: 768px){
+  .header{
+    padding : 0;
+  }
+  .navbar-collapse{
+    padding:0;
+  }
 }

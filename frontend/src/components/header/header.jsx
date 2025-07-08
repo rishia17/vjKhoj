@@ -19,7 +19,7 @@ function Header() {
 
   return (
     <Navbar className="header" expand="lg">
-      <Container fluid>
+      <Container fluid style={{backgroundColor: '#393E46'}}>
         <Navbar.Brand as={Link} to="/" className="nav-link brand-text">
           VJKHOJ
         </Navbar.Brand>
@@ -35,7 +35,7 @@ function Header() {
             ) : (
               <>
                 <Nav.Link as={Link} to="/chat" className="nav-link">Chat</Nav.Link>
-                <Nav.Link onClick={signOut} className="nav-link d-flex align-items-center">
+                <Nav.Link onClick={signOut} className="nav-link ">
                   <FaSignOutAlt style={{ marginRight: '5px' }} />
                   Logout
                 </Nav.Link>

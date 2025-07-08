@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div className="main-container">
       <div className="left-container">
-        <h1 className="animated-text">Welcome to the <span className='text-warning '> VJ KHOJ</span></h1>
+        <h1 className="animated-text">Welcome to the <span className='text-info '> VJ KHOJ</span></h1>
         <p className="description"> What's your project idea? Share it with me, and I'll help you refine it, suggest suitable tech stacks, datasets, and APIs to get you started.</p>
       </div>
       <div className="right-container">
